@@ -1,6 +1,6 @@
 <?php
 /**
-* Plugin Name: Feen Ban
+* Plugin Name: FeenBan
 * Plugin URI: http://anothercoffee.net
 * Description: A plugin for shadowbanning commenters.
 * Version: 0.1
@@ -173,32 +173,33 @@ function feenban_display_comment($comment, $args, $depth) {
  */
 function add_shadowban_setting( $user )
 {
-	$shadowbanned_meta = esc_attr(get_the_author_meta( 'shadowbanned', $user->ID ));	
-	$is_shadowbanned = false;
-	if ( !empty($shadowbanned_meta) ){
-		if (strcasecmp($shadowbanned_meta, "true") == 0) {
-			$is_shadowbanned = true;
-		}
-	}	
-    ?>
-        <h3>Shadow ban</h3>
+	if ( current_user_can( 'edit_users' ) ) {
+		$shadowbanned_meta = esc_attr(get_the_author_meta( 'shadowbanned', $user->ID ));	
+		$is_shadowbanned = false;
+		if ( !empty($shadowbanned_meta) ){
+			if (strcasecmp($shadowbanned_meta, "true") == 0) {
+				$is_shadowbanned = true;
+			}
+		}	
+	    ?>
+	        <h3>FeenBan</h3>
 
-        <table class="form-table">
-            <tr>
-                <th><label for="facebook_profile">Shadow ban</label></th>
-                <td>
-					<input type="checkbox" name="shadowbanned" value="true" 
-					<?php
-					if ($is_shadowbanned) {
-						echo "checked=\"checked\"";
-					}
-					?>
-					/><br/><span class="description">If shadowbanned, only the user can see their comments. Shadowbanned users' comments will be invisible to everyone else.</span>
-				</td>
-            </tr>
-        </table>
-
-    <?php
+	        <table class="form-table">
+	            <tr>
+	                <th><label for="facebook_profile">Shadow ban user</label></th>
+	                <td>
+						<input type="checkbox" name="shadowbanned" value="true" 
+						<?php
+						if ($is_shadowbanned) {
+							echo "checked=\"checked\"";
+						}
+						?>
+						/><br/><span class="description">If shadowbanned, only the user can see their comments. Shadowbanned users' comments will be invisible to everyone else.</span>
+					</td>
+	            </tr>
+	        </table>
+	    <?php
+	}
 }
 add_action( 'show_user_profile', 'add_shadowban_setting' );
 add_action( 'edit_user_profile', 'add_shadowban_setting' );
