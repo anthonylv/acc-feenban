@@ -5,6 +5,8 @@
  * The area of the page that contains comments and the comment form.
  * Based on the Twenty Fourteen theme comments template because that's
  * what http://freedomfeens.com has installed at the time of development.
+ * Why freedomfeens.com? See the readme.txt
+ *
  */
 
 /*

@@ -1,7 +1,7 @@
 <?php
 /**
 * Plugin Name: FeenBan
-* Plugin URI: http://anothercoffee.net
+* Plugin URI: http://anothercoffee.net/feenban
 * Description: A plugin for shadowbanning commenters.
 * Version: 0.1
 * Author: Anthony Lopez-Vito
